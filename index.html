@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ffc107;
+            --secondary: #4a90e2;
+            --dark: #121212;
+            --dark-gray: #1f1f1f;
+            --medium-gray: #2c2c2c;
+            --light-gray: #b0b0b0;
+            --light: #e0e0e0;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            font-size: 18px;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.8rem; }
+
+        /* Base Styles */
+        header {
+    background: 
+        linear-gradient(135deg, 
+            rgba(0, 0, 0, 0.95) 0%, 
+            #111 100%);
+    color: white;
+    padding: 5rem 1rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid rgba(255, 193, 7, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Dynamic Grid Pattern */
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 193, 7, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 193, 7, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.3;
+    z-index: 1;
+    animation: gridMove 40s linear infinite;
+}
+
+/* Animated Spotlight Effect */
+header::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, 
+            rgba(255, 193, 7, 0.05) 0%, 
+            transparent 60%);
+    animation: spotlightRotate 20s linear infinite;
+    z-index: 1;
+}
+
+/* Glowing Typography */
+header h1 {
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    margin-bottom: 0.8rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: #ffc107;
+    text-shadow: 
+        0 0 10px rgba(255, 193, 7, 0.3),
+        0 0 20px rgba(255, 193, 7, 0.2);
+    line-height: 1.1;
+    position: relative;
+    display: inline-block;
+    transform-style: preserve-3d;
+}
+
+header h1::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 4px;
+    background: #ffc107;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+    filter: blur(1px);
+}
+
+header p {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 700px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.6;
+    font-weight: 300;
+    letter-spacing: 0.8px;
+    position: relative;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Holographic Navigation */
+.team-nav {
+    padding: 2rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: transparent;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Optional: make shadow lighter or remove */
+}
+
+.team-nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.team-nav a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.2);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.team-nav a::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        transparent 45%,
+        rgba(255, 193, 7, 0.2) 50%,
+        transparent 55%
+    );
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.team-nav a:hover {
+    color: #ffc107;
+    transform: translateY(-5px);
+    box-shadow: 
+        0 7px 25px rgba(255, 193, 7, 0.3),
+        0 0 15px rgba(255, 193, 7, 0.2) inset;
+    border-color: rgba(255, 193, 7, 0.4);
+}
+
+.team-nav a:hover::before {
+    opacity: 1;
+    left: 100%;
+}
+
+.team-nav a.active {
+    color: #000;
+    background: #ffc107;
+    border-color: #ffc107;
+    font-weight: 700;
+    box-shadow: 
+        0 0 20px rgba(255, 193, 7, 0.7),
+        0 5px 30px rgba(255, 193, 7, 0.5);
+    transform: translateY(-3px);
+    animation: buttonPulse 2s infinite;
+}
+
+/* Animations */
+@keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 40px 40px; }
+}
+
+@keyframes spotlightRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes buttonPulse {
+    0% { box-shadow: 0 0 20px rgba(255, 193, 7, 0.7), 0 5px 30px rgba(255, 193, 7, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(255, 193, 7, 0.8), 0 8px 40px rgba(255, 193, 7, 0.6); }
+    100% { box-shadow: 0 0 20px rgba(255, 193, 7, 0.7), 0 5px 30px rgba(255, 193, 7, 0.5); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        padding: 4rem 1rem 1.5rem;
+    }
+    
+    .team-nav a {
+        padding: 0.9rem 1.8rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 3rem 1rem 1rem;
+    }
+    
+    .team-nav ul {
+        gap: 0.6rem;
+    }
+    
+    .team-nav a {
+        padding: 0.8rem 1.4rem;
+        font-size: 0.9rem;
+    }
+    
+    header p {
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+        .team-member {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .member-card {
+            background-color: var(--dark-gray);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            margin-bottom: 3rem;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--medium-gray), var(--dark-gray));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.3), transparent);
+        }
+
+        .profile-picture {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-picture img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 6px solid var(--primary);
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .profile-picture::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            z-index: -1;
+            opacity: 0.7;
+            filter: blur(15px);
+        }
+
+        .profile-info {
+            margin-left: 3rem;
+            flex: 1;
+        }
+
+        .profile-info h2 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--primary), #ffdd57);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .role {
+            font-size: 1.5rem;
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skills span {
+            background-color: rgba(74, 144, 226, 0.2);
+            color: var(--light);
+            font-size: 1.1rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+        }
+
+        .skills span:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            padding: 0 3rem;
+            margin-top: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tabs button {
+            background: none;
+            border: none;
+            color: var(--light-gray);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 1.2rem 2rem;
+            position: relative;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .tabs button::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .tabs button:hover {
+            color: var(--light);
+        }
+
+        .tabs button.active {
+            color: var(--primary);
+        }
+
+        .tabs button.active::after {
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 3rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
+        .tab-content ul {
+            list-style: none;
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            margin: 2rem 0;
+            padding: 0;
+        }
+
+        .tab-content ul li {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .tab-content ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .tab-content ul li:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .contact-card {
+            background-color: var(--medium-gray);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 193, 7, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-details {
+            flex: 1;
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            color: var(--light-gray);
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            color: var(--light);
+            word-break: break-all;
+        }
+
+        .contact-value a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .contact-value a:hover {
+            color: #ffdd57;
+            transform: translateX(3px);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 1.1rem;
+            padding: 3rem;
+            background-color: var(--dark-gray);
+            color: var(--light-gray);
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        footer a:hover {
+            color: #ffdd57;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 992px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .profile-info {
+                margin-left: 0;
+                margin-top: 2rem;
+            }
+
+            .skills {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+
+            .team-nav ul {
+                gap: 0.5rem;
+            }
+
+            .team-nav a {
+                padding: 0.6rem 1rem;
+                font-size: 1rem;
+            }
+
+            .profile-picture img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+                padding: 0 1rem;
+            }
+
+            .tabs button {
+                padding: 0.8rem 1.2rem;
+                font-size: 1.1rem;
+            }
+
+            .tab-content {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                font-size: 16px;
+            }
+
+            header {
+                padding: 2rem 1rem;
+            }
+
+            header p {
+                font-size: 1.2rem;
+            }
+
+            .profile-picture img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .profile-info h2 {
+                font-size: 2rem;
+            }
+
+            .role {
+                font-size: 1.2rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Our Team</h1>
+        <p>Meet the talented individuals behind our success</p>
+        <nav class="team-nav">
+            <ul>
+                <li><a href="#" data-target="alraffy-catao" class="active">Alraffy Catao</a></li>
+                <li><a href="#" data-target="roger-madulara">Roger Madulara</a></li>
+                <li><a href="#" data-target="ken-earl-hermida">Ken Earl Hermida</a></li>
+                <li><a href="#" data-target="jovan-reguya">Jovan Reguya</a></li>
+                <li><a href="#" data-target="jayrome-pillo">Jayrome Pillo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="team-member">
+            <!-- Alraffy Catao -->
+            <article id="alraffy-catao" class="member-card">
+                <div class="profile-header">
+                    <div class="profile-picture">
+                        <img src="https://scontent.fdvo9-1.fna.fbcdn.net/v/t39.30808-6/491295681_1497959217845406_1144254844063244636_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=tqofj6HesWEQ7kNvwEzTeOx&_nc_oc=AdluKPD8ujrNpKjkxT36Jrmw0QUaieILkmNulgGZubg1s4f6zhRcQkEvrQ4kps6HIWg&_nc_zt=23&_nc_ht=scontent.fdvo9-1.fna&_nc_gid=L9mLb8rMbuxNSfRHsmFjOg&oh=00_AfJRd7EVuFMEblH9WgDh2Fabq1m-7YJpkvmTiSu5HWFmmw&oe=682691F0" 
+                             alt="Profile picture of Alraffy Catao">
+                    </div>
+                    <div class="profile-info">
+                        <h2>Alraffy Catao</h2>
+                        <p class="role">Web Developer & UI Designer</p>
+                        <div class="skills">
+                            <span>UI/UX Design</span>
+                            <span>Creative Problem Solving</span>
+                            <span>Visual Storytelling</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs">
+                    <button data-section="about-alraffy" class="active">About</button>
+                    <button data-section="education-alraffy">Education</button>
+                    <button data-section="contacts-alraffy">Contacts</button>
+                </div>
+                <section id="about-alraffy" class="tab-content active">
+                    <p>Hi, I'm Alraffy. I am a highly imaginative and driven individual with a strong inclination toward creative pursuits and problem-solving. With an innate ability to think outside the box, I often find unconventional yet effective solutions to challenges. I thrive in dynamic environments where innovation and collaboration are valued.</p>
+                    <h3>Interests</h3>
+                    <ul>
+                        <li>UI/UX Design</li>
+                        <li>Creative Problem Solving</li>
+                        <li>Visual Storytelling</li>
+                        <li>Web Development</li>
+                        <li>Collaborative Projects</li>
+                    </ul>
+                    <h3>Professional Goals</h3>
+                    <ul>
+                        <li>Become a leading UI/UX designer</li>
+                        <li>Build innovative and user-friendly web applications</li>
+                        <li>Contribute to open-source design projects</li>
+                        <li>Mentor aspiring designers and developers</li>
+                    </ul>
+                </section>
+                <section id="education-alraffy" class="tab-content" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                    <h2 style="color: #ffdd57; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); border-bottom: 2px solid #ffdd57; padding-bottom: 5px;">
+                        <i class="fas fa-graduation-cap" style="margin-right: 10px;"></i>Education
+                    </h2>
+                    
+                    <div class="education-timeline" style="position: relative; padding-left: 30px; margin-top: 20px;">
+                        <!-- Timeline bar -->
+                        <div style="position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #ffdd57; border-radius: 3px;"></div>
+                        
+                        <!-- University Education -->
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.1); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 24px; height: 24px; border-radius: 50%; background: #ffdd57; border: 3px solid #fff; box-shadow: 0 0 0 2px #ffdd57;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-university" style="margin-right: 8px;"></i>XYZ UNIVERSITY
+                            </h3>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-book" style="margin-right: 8px;"></i>Bachelor of Arts in Design</p>
+                        </div>
+                        
+                        <!-- High School -->
+                        <div class="education-item" style="position: relative; padding: 15px; background: rgba(255, 221, 87, 0.08); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 20px; height: 20px; border-radius: 50%; background: #ffdd57; border: 2px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-school" style="margin-right: 8px;"></i>JOSE TUASON JR MEMORIAL NATIONAL HIGH SCHOOL
+                            </h3>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-user-graduate" style="margin-right: 8px;"></i>High School Graduate</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Font Awesome for icons -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                
+                <script>
+                    // Add hover effect
+                    document.querySelectorAll('.education-item').forEach(item => {
+                        item.addEventListener('mouseenter', () => {
+                            item.style.transform = 'translateX(5px)';
+                            item.style.boxShadow = '0 5px 15px rgba(255, 221, 87, 0.2)';
+                        });
+                        item.addEventListener('mouseleave', () => {
+                            item.style.transform = 'translateX(0)';
+                            item.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                        });
+                    });
+                </script>
+                <section id="contacts-alraffy" class="tab-content">
+                    <div class="contact-card">
+                        <h3><span class="icon">👥</span> Contact Information</h3>
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Email</p>
+                                <p class="contact-value">alraffy@example.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🐙</span>
+                            <div class="contact-details">
+                                <p class="contact-label">GitHub</p>
+                                <p class="contact-value"><a href="https://github.com/alraffy" target="_blank">https://github.com/alraffy</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📘</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Facebook</p>
+                                <p class="contact-value"><a href="https://facebook.com/alraffy" target="_blank">https://facebook.com/alraffy</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📷</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Instagram</p>
+                                <p class="contact-value"><a href="https://instagram.com/alraffy" target="_blank">https://instagram.com/alraffy</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </article>
+
+            <!-- Roger Madulara -->
+            <article id="roger-madulara" class="member-card">
+                <div class="profile-header">
+                    <div class="profile-picture">
+                        <img src="https://scontent.fdvo9-1.fna.fbcdn.net/v/t1.15752-9/494573150_1136764498206049_4962230916244173069_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=Cc1Spmkd53QQ7kNvwECRCWp&_nc_oc=AdmW2vmU0eepffUwFuStf7ywE3RO0idLHilYTt-AezvWk9ve1_-kQ3IqiV_TW3b5xto&_nc_zt=23&_nc_ht=scontent.fdvo9-1.fna&oh=03_Q7cD2QETBve8VigZzaMJgVrBwAKY2wlmj5xw_ElZaYgUwd9pKQ&oe=68484FCC" 
+                             alt="Profile picture of Roger Madulara">
+                    </div>
+                    <div class="profile-info">
+                        <h2>Roger Madulara</h2>
+                        <p class="role">Logistics Manager</p>
+                        <div class="skills">
+                            <span>Logistics Management</span>
+                            <span>Business Systems</span>
+                            <span>Team Leadership</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs">
+                    <button data-section="about-roger" class="active">About</button>
+                    <button data-section="education-roger">Education</button>
+                    <button data-section="contacts-roger">Contacts</button>
+                </div>
+                <section id="about-roger" class="tab-content active">
+                    <p>Hi, I'm Roger. I am a calm and dependable presence in any team setting, with a strong foundation in logistics, operations, and business systems. Known for being meticulous, organized, and resourceful, I excel in ensuring that processes run smoothly and efficiently.</p>
+                    <h3>Interests</h3>
+                    <ul>
+                        <li>Logistics Management</li>
+                        <li>Business Systems</li>
+                        <li>Team Leadership</li>
+                        <li>Process Optimization</li>
+                        <li>Event Planning</li>
+                    </ul>
+                    <h3>Professional Goals</h3>
+                    <ul>
+                        <li>Streamline logistics operations for large organizations</li>
+                        <li>Develop innovative business systems</li>
+                        <li>Lead high-performing teams</li>
+                        <li>Contribute to sustainable logistics practices</li>
+                    </ul>
+                </section>
+                <section id="education-roger" class="tab-content" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                    <h2 style="color: #ffdd57; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); border-bottom: 2px solid #ffdd57; padding-bottom: 5px;">
+                        <i class="fas fa-graduation-cap" style="margin-right: 10px;"></i>Education
+                    </h2>
+                    
+                    <div class="education-timeline" style="position: relative; padding-left: 30px; margin-top: 20px;">
+                        
+                        <div style="position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #ffdd57; border-radius: 3px;"></div>
+                        
+                        
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.1); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 24px; height: 24px; border-radius: 50%; background: #ffdd57; border: 3px solid #fff; box-shadow: 0 0 0 2px #ffdd57;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-university" style="margin-right: 8px;"></i>UNIVERSITY OF MINDANAO TAGUM COLLEGE
+                            </h3>
+                            <p style="margin: 5px 0; color: #ddd;"><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>Visayan Village, Tagum City</p>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-book" style="margin-right: 8px;"></i>Bachelor of Science in Computer Science</p>
+                            <p style="margin: 5px 0; color: #bbb;"><i class="far fa-calendar-alt" style="margin-right: 8px;"></i>2022 – Present</p>
+                        </div>
+                        
+                        
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.08); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 20px; height: 20px; border-radius: 50%; background: #ffdd57; border: 2px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-school" style="margin-right: 8px;"></i>TAGUM NATIONAL TRADE SCHOOL
+                            </h3>
+                            <p style="margin: 5px 0; color: #ddd;"><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>Apokon, Tagum City</p>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-laptop-code" style="margin-right: 8px;"></i>SHS – TVL: Computer Programming NCIII</p>
+                            <p style="margin: 5px 0; color: #bbb;"><i class="far fa-calendar-alt" style="margin-right: 8px;"></i>2020 – 2022</p>
+                        </div>
+                        
+                        <!-- Junior High School -->
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.06); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 16px; height: 16px; border-radius: 50%; background: #ffdd57; border: 2px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-school" style="margin-right: 8px;"></i>TAGUM CITY NATIONAL HIGH SCHOOL
+                            </h3>
+                            <p style="margin: 5px 0; color: #ddd;"><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>Mannga, Visayan Village, Tagum City</p>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-user-graduate" style="margin-right: 8px;"></i>Junior High School</p>
+                            <p style="margin: 5px 0; color: #bbb;"><i class="far fa-calendar-alt" style="margin-right: 8px;"></i>2016 – 2020</p>
+                        </div>
+                        
+                        <!-- Elementary School -->
+                        <div class="education-item" style="position: relative; padding: 15px; background: rgba(255, 221, 87, 0.04); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 12px; height: 12px; border-radius: 50%; background: #ffdd57; border: 2px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-pencil-alt" style="margin-right: 8px;"></i>MAGUGPO PILOT IMELDA ELEMENTARY SCHOOL
+                            </h3>
+                            <p style="margin: 5px 0; color: #ddd;"><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>Tagum City</p>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-child" style="margin-right: 8px;"></i>Elementary Education</p>
+                            <p style="margin: 5px 0; color: #bbb;"><i class="far fa-calendar-alt" style="margin-right: 8px;"></i>2009 – 2016</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Original content -->
+                    <div style="margin-top: 30px; padding: 15px; background: rgba(255, 221, 87, 0.1); border-left: 4px solid #ffdd57;">
+                        <p style="margin: 0; color: #fff;"><strong style="color: #ffdd57;">Previous Education:</strong> Bachelor of Science in Business Administration, ABC University</p>
+                    </div>
+                </section>
+                
+                <!-- Font Awesome for icons -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                
+                
+                <section id="contacts-roger" class="tab-content">
+                    <div class="contact-card">
+                        <h3><span class="icon">👥</span> Contact Information</h3>
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Email</p>
+                                <p class="contact-value">roger@example.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🐙</span>
+                            <div class="contact-details">
+                                <p class="contact-label">GitHub</p>
+                                <p class="contact-value"><a href="https://github.com/roger" target="_blank">https://github.com/roger</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📘</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Facebook</p>
+                                <p class="contact-value"><a href="https://facebook.com/roger" target="_blank">https://facebook.com/roger</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📷</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Instagram</p>
+                                <p class="contact-value"><a href="https://instagram.com/roger" target="_blank">https://instagram.com/roger</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </article>
+
+            <!-- Ken Earl Hermida -->
+            <article id="ken-earl-hermida" class="member-card">
+                <div class="profile-header">
+                    <div class="profile-picture">
+                        <img src="https://scontent.fdvo9-1.fna.fbcdn.net/v/t39.30808-6/476818462_1012226614111078_946143441904963484_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=-ahEO5qkMMkQ7kNvwEYXgJ9&_nc_oc=Adm-nCBZmzGZ0LdzBbTfArjTovSsiGgebW2ODOR0FaL6Q1RxTbOfTGrph_iiBYU3L30&_nc_zt=23&_nc_ht=scontent.fdvo9-1.fna&_nc_gid=BfKeoJBX304ESfrlceYt0g&oh=00_AfIbzWtqisAWa-ZSCQOo6JXaQgHuNAu29e-Thio23wwEkQ&oe=68269A61" 
+                             alt="Profile picture of Ken Earl Hermida">
+                    </div>
+                    <div class="profile-info">
+                        <h2>Ken Earl Hermida</h2>
+                        <p class="role">Full-Stack Developer</p>
+                        <div class="skills">
+                            <span>Full-Stack Development</span>
+                            <span>Game Design</span>
+                            <span>AI Integration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs">
+                    <button data-section="about-ken" class="active">About</button>
+                    <button data-section="education-ken">Education</button>
+                    <button data-section="contacts-ken">Contacts</button>
+                </div>
+                <section id="about-ken" class="tab-content active">
+                    <p>Hi, I'm Ken. I am a tech-savvy and highly inquisitive mind who finds joy in learning how things work and creating innovative digital solutions. Enthusiastic and self-motivated, I constantly experiment with new tools, programming languages, and development frameworks.</p>
+                    <h3>Interests</h3>
+                    <ul>
+                        <li>Full-Stack Development</li>
+                        <li>Game Design</li>
+                        <li>AI Integration</li>
+                        <li>Cloud Computing</li>
+                        <li>Open-Source Contribution</li>
+                    </ul>
+                    <h3>Professional Goals</h3>
+                    <ul>
+                        <li>Become a full-stack developer with expertise in modern frameworks</li>
+                        <li>Build innovative gaming applications</li>
+                        <li>Integrate AI into real-world solutions</li>
+                        <li>Contribute to major open-source projects</li>
+                    </ul>
+                </section>
+                <section id="education-ken" class="tab-content" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                    <h2 style="color: #ffdd57; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); border-bottom: 2px solid #ffdd57; padding-bottom: 5px;">
+                        <i class="fas fa-graduation-cap" style="margin-right: 10px;"></i>Education
+                    </h2>
+                    
+                    <div class="education-timeline" style="position: relative; padding-left: 30px; margin-top: 20px;">
+                        <!-- Timeline bar -->
+                        <div style="position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #ffdd57; border-radius: 3px;"></div>
+                        
+                        <!-- University Education -->
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.1); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 24px; height: 24px; border-radius: 50%; background: #ffdd57; border: 3px solid #fff; box-shadow: 0 0 0 2px #ffdd57;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-university" style="margin-right: 8px;"></i>DEF UNIVERSITY
+                            </h3>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-laptop-code" style="margin-right: 8px;"></i>Bachelor of Science in Computer Science</p>
+                        </div>
+                        
+                        <!-- High School -->
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.08); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 20px; height: 20px; border-radius: 50%; background: #ffdd57; border: 2px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-school" style="margin-right: 8px;"></i>SAWATA NATIONAL HIGH SCHOOL
+                            </h3>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-user-graduate" style="margin-right: 8px;"></i>High School and Senior High</p>
+                        </div>
+                        
+                        <!-- Elementary School -->
+                        <div class="education-item" style="position: relative; padding: 15px; background: rgba(255, 221, 87, 0.06); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 16px; height: 16px; border-radius: 50%; background: #ffdd57; border: 2px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-pencil-alt" style="margin-right: 8px;"></i>SAWATA ERNANDCOR CENTRAL ELEMENTARY SCHOOL
+                            </h3>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-child" style="margin-right: 8px;"></i>Elementary Education</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Font Awesome for icons -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                
+                <script>
+                    // Add hover effect
+                    document.querySelectorAll('.education-item').forEach(item => {
+                        item.addEventListener('mouseenter', () => {
+                            item.style.transform = 'translateX(5px)';
+                            item.style.boxShadow = '0 5px 15px rgba(255, 221, 87, 0.2)';
+                        });
+                        item.addEventListener('mouseleave', () => {
+                            item.style.transform = 'translateX(0)';
+                            item.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                        });
+                    });
+                </script>
+                <section id="contacts-ken" class="tab-content">
+                    <div class="contact-card">
+                        <h3><span class="icon">👥</span> Contact Information</h3>
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Email</p>
+                                <p class="contact-value">ken@example.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🐙</span>
+                            <div class="contact-details">
+                                <p class="contact-label">GitHub</p>
+                                <p class="contact-value"><a href="https://github.com/ken" target="_blank">https://github.com/ken</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📘</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Facebook</p>
+                                <p class="contact-value"><a href="https://facebook.com/ken" target="_blank">https://facebook.com/ken</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📷</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Instagram</p>
+                                <p class="contact-value"><a href="https://instagram.com/ken" target="_blank">https://instagram.com/ken</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </article>
+
+            <!-- Jovan Reguya -->
+            <article id="jovan-reguya" class="member-card">
+                <div class="profile-header">
+                    <div class="profile-picture">
+                        <img src="https://scontent.fcgy1-2.fna.fbcdn.net/v/t39.30808-1/495382210_2085676205244957_8283944320018898982_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=e99d92&_nc_ohc=nFhHWm5qRFMQ7kNvwHFtB5_&_nc_oc=Adl5VDf35oa2pBRh5rTdLLTEs4Sihl322uYHnubcGkiuCNv4j2DqLAiKXpNvjkzVIJo&_nc_zt=24&_nc_ht=scontent.fcgy1-2.fna&_nc_gid=92-kPG7Jseh7DKNzGmwXYQ&oh=00_AfJAg2SJUnzrVec4ySp-V3U5qiJ_xe9Nu-u2dRJ0u2rnwA&oe=6828C457" alt="Profile picture of Jovan Reguya">
+                    </div>
+                    <div class="profile-info">
+                        <h2>Jovan Reguya</h2>
+                        <p class="role">Marketing Strategist</p>
+                        <div class="skills">
+                            <span>Leadership</span>
+                            <span>Marketing Strategy</span>
+                            <span>Public Speaking</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs">
+                    <button data-section="about-jovan" class="active">About</button>
+                    <button data-section="education-jovan">Education</button>
+                    <button data-section="contacts-jovan">Contacts</button>
+                </div>
+                <section id="about-jovan" class="tab-content active">
+                    <p>Hi, I'm Jovan. I am an energetic and forward-thinking individual with a passion for leadership and motivating others. Naturally charismatic and articulate, I find fulfillment in connecting with people, inspiring them to pursue their potential, and leading teams toward ambitious goals.</p>
+                    <h3>Interests</h3>
+                    <ul>
+                        <li>Leadership</li>
+                        <li>Marketing Strategy</li>
+                        <li>Public Speaking</li>
+                        <li>Team Building</li>
+                        <li>Event Coordination</li>
+                    </ul>
+                    <h3>Professional Goals</h3>
+                    <ul>
+                        <li>Lead marketing campaigns for global brands</li>
+                        <li>Develop innovative marketing strategies</li>
+                        <li>Mentor aspiring marketers</li>
+                        <li>Build a strong professional network</li>
+                    </ul>
+                </section>
+                <section id="education-jovan" class="tab-content" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                    <h2 style="color: #ffdd57; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); border-bottom: 2px solid #ffdd57; padding-bottom: 5px;">
+                        <i class="fas fa-graduation-cap" style="margin-right: 10px;"></i>Education
+                    </h2>
+                    
+                    <div class="education-timeline" style="position: relative; padding-left: 30px; margin-top: 20px;">
+                        <!-- Timeline bar -->
+                        <div style="position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #ffdd57; border-radius: 3px;"></div>
+                        
+                        <!-- University Education -->
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.1); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 24px; height: 24px; border-radius: 50%; background: #ffdd57; border: 3px solid #fff; box-shadow: 0 0 0 2px #ffdd57;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-university" style="margin-right: 8px;"></i>DE LA SALLE UNIVERSITY - MANILA
+                            </h3>
+                            <p style="margin: 5px 0; color: #ddd;"><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>Manila, Philippines</p>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-chart-line" style="margin-right: 8px;"></i>Bachelor of Science in Marketing</p>
+                            <p style="margin: 5px 0; color: #bbb;"><i class="far fa-calendar-alt" style="margin-right: 8px;"></i>2018 - 2022</p>
+                            <p style="margin: 5px 0; color: #fff; font-style: italic;"><i class="fas fa-award" style="margin-right: 8px;"></i>Cum Laude Honors</p>
+                        </div>
+                        
+                        <!-- Senior High School -->
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.08); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 20px; height: 20px; border-radius: 50%; background: #ffdd57; border: 2px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-school" style="margin-right: 8px;"></i>ATENEO DE MANILA SENIOR HIGH SCHOOL
+                            </h3>
+                            <p style="margin: 5px 0; color: #ddd;"><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>Quezon City, Philippines</p>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-laptop" style="margin-right: 8px;"></i>ABM Strand (Accountancy, Business and Management)</p>
+                            <p style="margin: 5px 0; color: #bbb;"><i class="far fa-calendar-alt" style="margin-right: 8px;"></i>2016 - 2018</p>
+                        </div>
+                        
+                        <!-- Junior High School -->
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.06); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 18px; height: 18px; border-radius: 50%; background: #ffdd57; border: 2px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-school" style="margin-right: 8px;"></i>QUEZON CITY SCIENCE HIGH SCHOOL
+                            </h3>
+                            <p style="margin: 5px 0; color: #ddd;"><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>Quezon City, Philippines</p>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-flask" style="margin-right: 8px;"></i>Special Science Curriculum</p>
+                            <p style="margin: 5px 0; color: #bbb;"><i class="far fa-calendar-alt" style="margin-right: 8px;"></i>2012 - 2016</p>
+                        </div>
+                        
+                        <!-- Elementary School -->
+                        <div class="education-item" style="position: relative; padding: 15px; background: rgba(255, 221, 87, 0.04); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 16px; height: 16px; border-radius: 50%; background: #ffdd57; border: 2px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-pencil-alt" style="margin-right: 8px;"></i>SAN ANTONIO ELEMENTARY SCHOOL
+                            </h3>
+                            <p style="margin: 5px 0; color: #ddd;"><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>San Antonio, Quezon City</p>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-child" style="margin-right: 8px;"></i>Elementary Education</p>
+                            <p style="margin: 5px 0; color: #bbb;"><i class="far fa-calendar-alt" style="margin-right: 8px;"></i>2006 - 2012</p>
+                            <p style="margin: 5px 0; color: #fff; font-style: italic;"><i class="fas fa-award" style="margin-right: 8px;"></i>Valedictorian</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Font Awesome for icons -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                
+                <script>
+                    // Add hover effect
+                    document.querySelectorAll('.education-item').forEach(item => {
+                        item.addEventListener('mouseenter', () => {
+                            item.style.transform = 'translateX(5px)';
+                            item.style.boxShadow = '0 5px 15px rgba(255, 221, 87, 0.2)';
+                        });
+                        item.addEventListener('mouseleave', () => {
+                            item.style.transform = 'translateX(0)';
+                            item.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                        });
+                    });
+                </script>
+                <section id="contacts-jovan" class="tab-content">
+                    <div class="contact-card">
+                        <h3><span class="icon">👥</span> Contact Information</h3>
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Email</p>
+                                <p class="contact-value">jovan@example.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🐙</span>
+                            <div class="contact-details">
+                                <p class="contact-label">GitHub</p>
+                                <p class="contact-value"><a href="https://github.com/jovan" target="_blank">https://github.com/vanruin</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📘</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Facebook</p>
+                                <p class="contact-value"><a href="https://facebook.com/jovan" target="_blank">https://facebook.com/jovan</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📷</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Instagram</p>
+                                <p class="contact-value"><a href="https://instagram.com/jovan" target="_blank">https://instagram.com/jovan</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </article>
+
+            <!-- Jayrome Pillo -->
+            <article id="jayrome-pillo" class="member-card">
+                <div class="profile-header">
+                    <div class="profile-picture">
+                        <img src="https://scontent.fdvo9-1.fna.fbcdn.net/v/t39.30808-6/492525398_4067114073610533_4667834524510889815_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=386mWVkLrdMQ7kNvwEG4b0W&_nc_oc=AdnOQljedkEzqLtKe1ozlv8iBnoYbq1KfiCTuEzU9Zu385Me-7LaVnzdN-FaJ4kHnJ0&_nc_zt=23&_nc_ht=scontent.fdvo9-1.fna&_nc_gid=InIL1Zql3dnajRKaGSIvHQ&oh=00_AfItr8tounfbu1izi__UxJfWYrGtv7ACsCAg8gJeb82ZOw&oe=682685D4" 
+                             alt="Profile picture of Jayrome Pillo">
+                    </div>
+                    <div class="profile-info">
+                        <h2>Jayrome Pillo</h2>
+                        <p class="role">Community Developer</p>
+                        <div class="skills">
+                            <span>Community Development</span>
+                            <span>Technology for Social Impact</span>
+                            <span>Mindfulness Practices</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs">
+                    <button data-section="about-jayrome" class="active">About</button>
+                    <button data-section="education-jayrome">Education</button>
+                    <button data-section="contacts-jayrome">Contacts</button>
+                </div>
+                <section id="about-jayrome" class="tab-content active">
+                    <p>Hi, I'm Jayrome. I am a thoughtful and driven individual with a strong sense of purpose and a desire to make meaningful contributions to my community and profession. I am known for my resilience, work ethic, and ability to adapt to new environments with ease.</p>
+                    <h3>Interests</h3>
+                    <ul>
+                        <li>Community Development</li>
+                        <li>Technology for Social Impact</li>
+                        <li>Mindfulness Practices</li>
+                        <li>Public Service</li>
+                        <li>Volunteer Work</li>
+                    </ul>
+                    <h3>Professional Goals</h3>
+                    <ul>
+                        <li>Empower communities through technology</li>
+                        <li>Develop impactful social programs</li>
+                        <li>Promote mindfulness and well-being</li>
+                        <li>Collaborate with global organizations</li>
+                    </ul>
+                </section>
+                <section id="education-jayrome" class="tab-content" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                    <h2 style="color: #ffdd57; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); border-bottom: 2px solid #ffdd57; padding-bottom: 5px;">
+                        <i class="fas fa-graduation-cap" style="margin-right: 10px;"></i>Education
+                    </h2>
+                    
+                    <div class="education-timeline" style="position: relative; padding-left: 30px; margin-top: 20px;">
+                        <!-- Timeline bar -->
+                        <div style="position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #ffdd57; border-radius: 3px;"></div>
+                        
+                        <!-- University Education -->
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.1); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 24px; height: 24px; border-radius: 50%; background: #ffdd57; border: 3px solid #fff; box-shadow: 0 0 0 2px #ffdd57;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-university" style="margin-right: 8px;"></i>JKL UNIVERSITY
+                            </h3>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-hands-helping" style="margin-right: 8px;"></i>Bachelor of Science in Social Work</p>
+                        </div>
+                        
+                        <!-- College -->
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.09); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 22px; height: 22px; border-radius: 50%; background: #ffdd57; border: 3px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-university" style="margin-right: 8px;"></i>UNIVERSITY OF MINDANAO (UM)
+                            </h3>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-book" style="margin-right: 8px;"></i>College Education</p>
+                        </div>
+                        
+                        <!-- Senior High -->
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.07); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 20px; height: 20px; border-radius: 50%; background: #ffdd57; border: 2px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-school" style="margin-right: 8px;"></i>ARRIESGADO COLLEGE FOUNDATION
+                            </h3>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-user-graduate" style="margin-right: 8px;"></i>Senior High School</p>
+                        </div>
+                        
+                        <!-- High School -->
+                        <div class="education-item" style="position: relative; margin-bottom: 25px; padding: 15px; background: rgba(255, 221, 87, 0.05); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 18px; height: 18px; border-radius: 50%; background: #ffdd57; border: 2px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-school" style="margin-right: 8px;"></i>TAGUM CITY NATIONAL COMPREHENSIVE HIGH SCHOOL
+                            </h3>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-user-graduate" style="margin-right: 8px;"></i>High School</p>
+                        </div>
+                        
+                        <!-- Elementary School -->
+                        <div class="education-item" style="position: relative; padding: 15px; background: rgba(255, 221, 87, 0.03); border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                            <div style="position: absolute; left: -38px; top: 15px; width: 16px; height: 16px; border-radius: 50%; background: #ffdd57; border: 2px solid #fff;"></div>
+                            <h3 style="color: #ffdd57; margin-top: 0; margin-bottom: 5px;">
+                                <i class="fas fa-pencil-alt" style="margin-right: 8px;"></i>MAGUPO PILOT ELEMENTARY SCHOOL
+                            </h3>
+                            <p style="margin: 5px 0; color: #fff;"><i class="fas fa-child" style="margin-right: 8px;"></i>Elementary Education</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Font Awesome for icons -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                
+                <script>
+                    // Add hover effect
+                    document.querySelectorAll('.education-item').forEach(item => {
+                        item.addEventListener('mouseenter', () => {
+                            item.style.transform = 'translateX(5px)';
+                            item.style.boxShadow = '0 5px 15px rgba(255, 221, 87, 0.2)';
+                        });
+                        item.addEventListener('mouseleave', () => {
+                            item.style.transform = 'translateX(0)';
+                            item.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                        });
+                    });
+                </script>
+                <section id="contacts-jayrome" class="tab-content">
+                    <div class="contact-card">
+                        <h3><span class="icon">👥</span> Contact Information</h3>
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Email</p>
+                                <p class="contact-value">jayrome@example.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🐙</span>
+                            <div class="contact-details">
+                                <p class="contact-label">GitHub</p>
+                                <p class="contact-value"><a href="https://github.com/jayrome" target="_blank">https://github.com/jayrome</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📘</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Facebook</p>
+                                <p class="contact-value"><a href="https://facebook.com/jayrome" target="_blank">https://facebook.com/jayrome</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📷</span>
+                            <div class="contact-details">
+                                <p class="contact-label">Instagram</p>
+                                <p class="contact-value"><a href="https://instagram.com/jayrome" target="_blank">https://instagram.com/jayrome</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Team Portfolio | <a href="mailto:team@example.com">Contact Us</a></p>
+    </footer>
+
+    <script>
+        // JavaScript to toggle visibility of team members and update active nav link
+        document.querySelectorAll('.team-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all nav links
+                document.querySelectorAll('.team-nav a').forEach(navLink => {
+                    navLink.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                const targetId = this.getAttribute('data-target');
+                document.querySelectorAll('.member-card').forEach(card => {
+                    if (card.id === targetId) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    
+        // Initially hide all cards except the first one and set first nav link as active
+        document.querySelectorAll('.member-card').forEach((card, index) => {
+            card.style.display = index === 0 ? 'block' : 'none';
+        });
+        
+        // Set first nav link as active on page load
+        document.querySelector('.team-nav a').classList.add('active');
+    
+        // JavaScript to toggle tabs within each member card
+        document.querySelectorAll('.tabs button').forEach(button => {
+            button.addEventListener('click', function() {
+                const parentCard = this.closest('.member-card');
+                const sectionId = this.getAttribute('data-section');
+    
+                // Remove active class from all buttons in the current member card
+                parentCard.querySelectorAll('.tabs button').forEach(btn => btn.classList.remove('active'));
+    
+                // Add active class to the clicked button
+                this.classList.add('active');
+    
+                // Hide all tab contents in the current member card
+                parentCard.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    
+                // Show the selected tab content
+                parentCard.querySelector(`#${sectionId}`).classList.add('active');
+            });
+        });
+    </script>
+    <script>
+        // Add hover effect
+        document.querySelectorAll('.education-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateX(5px)';
+                item.style.boxShadow = '0 5px 15px rgba(255, 221, 87, 0.2)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateX(0)';
+                item.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+            });
+        });
+    </script>
